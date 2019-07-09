@@ -21,12 +21,8 @@ import com.voting.VoteSum;
 
 public class VoteSum implements Serializable {
 
-	VoteQuery query = new VoteQuery();
-
 	private Integer candidate_id;
 	private Integer votes;
-
-	private List<VoteSum> list = new ArrayList<VoteSum>();
 
 	public VoteSum() {
 
@@ -38,15 +34,6 @@ public class VoteSum implements Serializable {
 
 	public void setCandidate_id(Integer candidate_id) {
 		this.candidate_id = candidate_id;
-	}
-
-	public List<VoteSum> getList() {
-
-		return query.listVoteSum();
-	}
-
-	public void setList(List<VoteSum> list) {
-		this.list = list;
 	}
 
 	public Integer getVotes() {

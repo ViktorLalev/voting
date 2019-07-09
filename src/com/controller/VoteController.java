@@ -28,6 +28,8 @@ public class VoteController implements Serializable {
 
 	private List<Vote> list = new ArrayList<Vote>();
 
+	private List<VoteSum> voteList = new ArrayList<VoteSum>();
+
 	private Integer id;
 	private Integer candidate_id;
 	private Integer age;
@@ -53,16 +55,25 @@ public class VoteController implements Serializable {
 
 	private void generatePieChart() {
 
-		List<VoteSum> voteSum = new ArrayList<VoteSum>();
-
 		pieModel = new PieChartModel();
 
-		pieModel.set("Brand 1", 540);
-		pieModel.set("Brand 2", 325);
-		pieModel.set("Brand 3", 702);
-		pieModel.set("Brand 4", 421);
+		for (VoteSum vList : voteList) {
+//			System.out.println(vList.getVotes());
 
-		pieModel.setTitle("Votes");
+			pieModel.set("Brand 1", 540);
+		}
+//		countries.stream().forEach((c) -> System.out.println(c));
+
+		voteList.forEach((vList) -> pieModel.set("Brand 1", vList.getVotes()));
+//		pieModel.set("Brand 1", 540);
+
+//
+//		pieModel.set("Brand 1", 540);
+//		pieModel.set("Brand 2", 325);
+//		pieModel.set("Brand 3", 702);
+//		pieModel.set("Brand 4", 421);
+
+		pieModel.setTitle("Votess");
 		pieModel.setLegendPosition("w");
 		pieModel.setShadow(false);
 
@@ -125,18 +136,16 @@ public class VoteController implements Serializable {
 		this.list = list;
 	}
 
+	public List<VoteSum> getVoteList() {
+
+		return query.listVoteSum();
+	}
+
+	public void setVoteList(List<VoteSum> list) {
+		this.voteList = list;
+	}
+
 	public PieChartModel getPieModel() {
-
-		
-		
-		pieModel.setTitle("Votes");
-		pieModel.setLegendPosition("w");
-		pieModel.setShadow(false);
-
-		pieModel.set("Brand 1", 1500);
-		pieModel.set("Brand 2", 325);
-		pieModel.set("Brand 3", 702);
-		pieModel.set("Brand 4", 421);
 
 		return pieModel;
 	}
