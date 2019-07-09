@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>User Registration Form</title>
@@ -10,7 +10,25 @@
 
 <h:body>
 
-	Create new candidate
+	<h:form>
+		<p:panel id="basic" header="Create Candidate"
+			style="margin-bottom:20px; text-align:center">
+			<h:panelGrid columns="2" cellpadding="5">
+
+				<h3>Name</h3>
+				<p:inputText  value="#{candidates.name}" />
+
+
+				<h3>Platform url</h3>
+				<p:inputText  value="#{candidates.platform}" />
+
+				<p:commandButton value="Create" id="createBtn"
+					action="#{candidates.store}"
+					style="margin-right:20px;" ajax="false" />
+
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
 
 
 </h:body>

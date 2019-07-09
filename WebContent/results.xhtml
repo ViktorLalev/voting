@@ -7,6 +7,29 @@
 	<title>Voting System</title>
 </h:head>
 <h:body>
-	charts
+	<h:form>
+		<p:dataTable var="vote" value="#{votes.list}">
+			<p:column headerText="Id">
+				<h:outputText value="#{vote.id}" />
+			</p:column>
+
+			<p:column headerText="Candidate ID">
+				<h:outputText value="#{vote.candidate}" />
+			</p:column>
+
+			<p:column headerText="Age">
+				<h:outputText value="#{vote.age}" />
+			</p:column>
+
+			<p:column headerText="Sex">
+				<h:outputText value="#{vote.sex}" />
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+
+
+	<p:chart type="pie" model="#{votes.pieModel}"
+		style="width:400px;height:300px" />
 </h:body>
 </html>

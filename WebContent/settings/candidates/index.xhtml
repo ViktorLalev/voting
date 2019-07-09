@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>Candidates</title>
@@ -10,13 +10,32 @@
 
 <h:body>
 
-	List All Candidates + delete
-	<ul>
-		<ui:repeat value="#{vote.candidates}" var="candidate">
-			<li><h:outputText value="#{candidate.firstName}" /></li>
-		</ui:repeat>
-	
-	</ul>
+	<p:link outcome="/settings/candidates/create.xhtml" value="Create">
+
+	</p:link>
+	<br />
+	<br />
+	<h:form>
+		<p:dataTable var="candidate" value="#{candidates.list}">
+			<p:column headerText="Id">
+				<h:outputText value="#{candidate.id}" />
+			</p:column>
+
+			<p:column headerText="Year">
+				<h:outputText value="#{candidate.name}" />
+			</p:column>
+
+			<p:column headerText="Brand">
+				<h:outputText value="#{candidate.platform}" />
+			</p:column>
+			<p:column headerText="Delete">
+				<p:commandButton value="Delete" id="deleteBtn"
+					action="#{candidates.delete(candidate.id)}"
+					style="margin-right:20px;" ajax="false" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+
 
 </h:body>
 

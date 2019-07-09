@@ -1,54 +1,80 @@
 package com.voting;
-import javax.faces.bean.ManagedBean;
 
-@ManagedBean
+
+import com.controller.CandidateController;
+
 public class Vote {
 
-	Candidate[] candidates;
-	User[] users;
+	private Integer id;
+	private Integer candidate_id;
+	private Integer age;
+	private String sex;
+	private String city;
+	private String education;
 
-	public static Integer totalVotes = 0;
+	
 
 	public Vote() {
 
-//		User user = new User();
-//
-//		user.setAge(28);
-//		user.setCity("Sm");
-//		user.setName("Viktor");
-//		user.setPid("9105316060");
-//		user.setSex("m");
-//
-//		this.users[0] = user;
-
 	}
 
-	public User[] getUsers() {
-		return users;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setUsers(User[] users) {
-		this.users = users;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public Candidate[] getCandidates() {
-		return candidates;
+	public Integer getCandidate_id() {
+		return candidate_id;
 	}
 
-	public void setCandidates(Candidate[] candidates) {
-		this.candidates = candidates;
+	public String getCandidate() {
+
+		CandidateController candidate = new CandidateController();
+
+		return candidate.getById(candidate_id);
 	}
 
-	public static Integer getTotalVotes() {
-		return totalVotes;
+	public void setCandidate_id(Integer candidate_id) {
+		this.candidate_id = candidate_id;
 	}
 
-	public static void setTotalVotes(Integer totalVotes) {
-		Vote.totalVotes = totalVotes;
+	public Integer getAge() {
+		return age;
 	}
 
-	public void buttonAction() {
-		//TODO
+	public void setAge(Integer age) {
+		this.age = age;
 	}
+
+	public String getSex() {
+
+		return sex;// == "m" ? "Male" : "Female";
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getEducation() {
+		return education;
+	}
+
+	public void setEducation(String education) {
+		this.education = education;
+	}
+
+
+
 
 }

@@ -8,35 +8,138 @@
 </h:head>
 <h:body>
 	<style type="text/css">
-.logo {
-	width: 5%
+.label {
+	width: 20%;
+	padding: 4px;
 }
 
-.detail {
-	width: 95%;
-	padding-left: 25px;
+.value {
+	width: 80%;
+	padding: 4px;
 }
 
-.detail td {
-	font-size: 24px;
+.grid {
+	width: 100%;
+}
+
+.error {
+	color: red;
+}
+
+.outputLabel {
+	font-weight: bold;
+}
+
+.grid {
+	width: 33%;
+	padding: 4px;
 }
 </style>
 
-List candidates
+	<style type="text/css">
+.label {
+	width: 20%;
+	padding: 4px;
+}
+
+.value {
+	width: 80%;
+	padding: 4px;
+}
+
+.grid {
+	width: 100%;
+}
+
+.error {
+	color: red;
+}
+
+.outputLabel {
+	font-weight: bold;
+}
+
+.grid {
+	width: 33%;
+	padding: 4px;
+}
+</style>
+
+
 	<h:form id="form">
-		<p:repeat value="#{main.list}" var="candidate">
-		
-		
-		<p:fieldset legend="#{candidate.name}" style="margin-bottom:20px">
-        <h:panelGrid columns="2" cellpadding="5">
-            <h:outputText
-                value="#{candidate.platform}" />
-        </h:panelGrid>
-         <p:commandButton value="Vote" action="#{vote.voteAction}" style="margin-right:20px;" styleClass="ui-priority-primary" />
-    </p:fieldset>
-		
-		
-		</p:repeat>
+
+		<p:growl id="growl" sticky="true" showDetail="true" />
+
+		<p:wizard>
+			<p:tab id="personal" title="Personal">
+				<p:panel header="Personal Details">
+					<p:messages />
+					<h:panelGrid columns="2" columnClasses="label, value">
+						<h:outputText value="Age" />
+						<p:inputText value="#{votes.age}" required="true" label="Age" />
+
+
+
+						<p:outputLabel for="sex" value="Sex" />
+						<p:selectOneRadio id="sex" value="#{votes.sex}"
+							unselectable="false">
+							<f:selectItem itemLabel="Male" itemValue="m" />
+							<f:selectItem itemLabel="Female" itemValue="f" />
+
+						</p:selectOneRadio>
+
+
+
+						<h:outputText value="City" />
+						<p:inputText value="#{votes.city}" />
+
+						<p:outputLabel for="education" value="Education" />
+						<p:selectOneMenu id="education" value="#{votes.education}"
+							style="width:125px">
+							<f:selectItem itemLabel="Secondary school"
+								itemValue="secondary-school" />
+							<f:selectItem itemLabel="Undergraduate" itemValue="undergraduate" />
+							<f:selectItem itemLabel="Graduate" itemValue="graduate" />
+							<f:selectItem itemLabel="Post Gradudate"
+								itemValue="post-graduate" />
+						</p:selectOneMenu>
+
+					</h:panelGrid>
+				</p:panel>
+			</p:tab>
+
+			<p:tab id="candidates" title="Candidates">
+				<p:panel header="Candidates List">
+					<p:messages />
+					<h:panelGrid columns="2">
+						<p:dataTable var="candidate" value="#{candidates.list}">
+							<p:column headerText="Id">
+								<h:outputText value="#{candidate.id}" />
+							</p:column>
+
+							<p:column headerText="Name">
+								<h:outputText value="#{candidate.name}" />
+							</p:column>
+
+							<p:column headerText="Platform">
+								<h:outputText value="#{candidate.platform}" />
+							</p:column>
+
+							<p:column headerText="Action">
+								<p:commandButton value="Vote"
+									action="#{votes.store(candidate.id)}"
+									process="@this"
+									style="margin-right:20px;" styleClass="ui-priority-primary"/>
+							</p:column>
+						</p:dataTable>
+					</h:panelGrid>
+
+
+				</p:panel>
+			</p:tab>
+
+		</p:wizard>
+
 	</h:form>
 </h:body>
 </html>
