@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.voting.Candidate;
 import com.voting.Vote;
-import com.voting.VoteSum;
 
 public class VoteQuery extends DBConnection implements Serializable {
 

@@ -17,7 +17,6 @@ import org.primefaces.model.chart.PieChartModel;
 import com.database.VoteQuery;
 import com.voting.Candidate;
 import com.voting.Vote;
-import com.voting.VoteSum;
 
 @ManagedBean(name = "votes")
 @ViewScoped

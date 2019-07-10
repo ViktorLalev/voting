@@ -1,4 +1,4 @@
-package com.voting;
+package com.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -14,18 +14,22 @@ import javax.servlet.http.HttpServletRequest;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.model.chart.PieChartModel;
 
-import com.database.VoteQuery;
+import com.database.ResultQuery;
 import com.voting.Candidate;
-import com.voting.Vote;
-import com.voting.VoteSum;
+import com.voting.Result;
 
-public class VoteSum implements Serializable {
+@ManagedBean(name = "results")
+
+public class ResultController implements Serializable {
+
+	ResultQuery query = new ResultQuery();
+
+	private List<Result> list = new ArrayList<Result>();
 
 	private Integer candidate_id;
 	private Integer votes;
 
-	public VoteSum() {
-
+	public ResultController() {
 	}
 
 	public Integer getCandidate_id() {
@@ -36,11 +40,13 @@ public class VoteSum implements Serializable {
 		this.candidate_id = candidate_id;
 	}
 
-	public Integer getVotes() {
-		return votes;
+	public List<Result> getList() {
+
+		return query.listResults();
 	}
 
-	public void setVotes(Integer votes) {
-		this.votes = votes;
+	public void setList(List<Result> list) {
+		this.list = list;
 	}
+
 }
