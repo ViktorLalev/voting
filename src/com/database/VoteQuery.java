@@ -10,7 +10,7 @@ import com.voting.VoteSum;
 
 public class VoteQuery extends DBConnection implements Serializable {
 
-	public List<Vote> listVotese() {
+	public List<Vote> listVotes() {
 		List<Vote> list = new ArrayList<Vote>();
 
 		try {
@@ -25,27 +25,6 @@ public class VoteQuery extends DBConnection implements Serializable {
 				vote.setAge(rs.getInt("age"));
 				vote.setCity(rs.getString("city"));
 				vote.setEducation(rs.getString("education"));
-				list.add(vote);
-			}
-		} catch (Exception e) {
-
-		}
-		return list;
-
-	}
-
-	public List<VoteSum> listVoteSum() {
-		List<VoteSum> list = new ArrayList<VoteSum>();
-
-		try {
-			ps = connect().prepareStatement("SELECT candidate_id, count(id) as votes from votes group by candidate_id");
-
-			rs = ps.executeQuery();
-
-			while (rs.next()) {
-				VoteSum vote = new VoteSum();
-				vote.setCandidate_id(rs.getInt("candidate_id"));
-				vote.setVotes(rs.getInt("votes"));
 				list.add(vote);
 			}
 		} catch (Exception e) {

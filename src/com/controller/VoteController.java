@@ -28,8 +28,6 @@ public class VoteController implements Serializable {
 
 	private List<Vote> list = new ArrayList<Vote>();
 
-	private List<VoteSum> voteList = new ArrayList<VoteSum>();
-
 	private Integer id;
 	private Integer candidate_id;
 	private Integer age;
@@ -37,46 +35,7 @@ public class VoteController implements Serializable {
 	private String city;
 	private String education;
 
-	private boolean skip;
-
-	private PieChartModel pieModel;
-
 	public VoteController() {
-
-		generateCharts();
-
-	}
-
-	private void generateCharts() {
-
-		generatePieChart();
-
-	}
-
-	private void generatePieChart() {
-
-		pieModel = new PieChartModel();
-
-		for (VoteSum vList : voteList) {
-//			System.out.println(vList.getVotes());
-
-			pieModel.set("Brand 1", 540);
-		}
-//		countries.stream().forEach((c) -> System.out.println(c));
-
-		voteList.forEach((vList) -> pieModel.set("Brand 1", vList.getVotes()));
-//		pieModel.set("Brand 1", 540);
-
-//
-//		pieModel.set("Brand 1", 540);
-//		pieModel.set("Brand 2", 325);
-//		pieModel.set("Brand 3", 702);
-//		pieModel.set("Brand 4", 421);
-
-		pieModel.setTitle("Votess");
-		pieModel.setLegendPosition("w");
-		pieModel.setShadow(false);
-
 	}
 
 	public Integer getId() {
@@ -129,54 +88,19 @@ public class VoteController implements Serializable {
 
 	public List<Vote> getList() {
 
-		return query.listVotese();
+		return query.listVotes();
 	}
 
 	public void setList(List<Vote> list) {
 		this.list = list;
 	}
 
-	public List<VoteSum> getVoteList() {
-
-		return query.listVoteSum();
-	}
-
-	public void setVoteList(List<VoteSum> list) {
-		this.voteList = list;
-	}
-
-	public PieChartModel getPieModel() {
-
-		return pieModel;
-	}
-
-	public void setPieModel(PieChartModel pieModel) {
-		this.pieModel = pieModel;
-	}
-
 	public void store(Integer candidate_id) {
 
 		query.store(candidate_id, age, sex, city, education);
 
-		this.redirect("results");
+		this.redirect("success");
 
-	}
-
-	public boolean isSkip() {
-		return skip;
-	}
-
-	public void setSkip(boolean skip) {
-		this.skip = skip;
-	}
-
-	public String onFlowProcess(FlowEvent event) {
-		if (skip) {
-			skip = false; // reset in case user goes back
-			return "confirm";
-		} else {
-			return event.getNewStep();
-		}
 	}
 
 	private void redirect(String url) {

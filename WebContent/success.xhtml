@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Voting System</title>
+</h:head>
+<h:body>
+	<div style="text-align: center">
+		<p:staticMessage severity="info" summary="SUCCESS!"
+			detail="Your vote is recoreded to the system!" />
+	</div>
+	<div>
+		<p:link outcome="/index.xhtml" value="Vote Again">
+
+		</p:link>
+		<br />
+		<p:link outcome="/results.xhtml" value="Results">
+
+		</p:link>
+		<br />
+		<p:link outcome="/stats.xhtml" value="Stats">
+
+		</p:link>
+	</div>
+</h:body>
+</html>
