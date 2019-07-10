@@ -19,12 +19,18 @@
 		</p:link>
 	</div>
 	<div>
-		<p:chart type="pie" model="#{results.pieModel}"
+		<p:chart type="pie" model="#{stats.pieModel}"
 			style=" margin:0 auto;width:500px;height:400px" />
 
 	</div>
+	<div>
+		<p:chart type="bar" model="#{stats.sexModel}" style="height:300px" />
+
+
+	</div>
+
 	<h:form>
-		<p:dataTable var="result" value="#{results.list}">
+		<p:dataTable var="result" value="#{stats.list}">
 
 
 			<p:column headerText="Candidate">

@@ -12,10 +12,15 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.primefaces.event.FlowEvent;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.PieChartModel;
 
 import com.database.VoteQuery;
 import com.voting.Candidate;
+import com.voting.Result;
 import com.voting.Vote;
 
 @ManagedBean(name = "votes")
@@ -33,6 +38,16 @@ public class VoteController implements Serializable {
 	private String sex;
 	private String city;
 	private String education;
+
+	private BarChartModel barModel;
+
+//	@PostConstruct
+//	public void init() {
+//		list = getList();
+//
+//		createBarModel(list);
+//
+//	}
 
 	public VoteController() {
 	}
@@ -112,6 +127,53 @@ public class VoteController implements Serializable {
 			e.printStackTrace();
 		}
 
+	}
+
+	private void createBarModel(List<Result> list) {
+		barModel = initBarModel(list);
+
+		barModel.setTitle("Man/Woman");
+		barModel.setLegendPosition("ne");
+
+		Axis xAxis = barModel.getAxis(AxisType.X);
+		xAxis.setLabel("Candidates");
+
+		Axis yAxis = barModel.getAxis(AxisType.Y);
+		yAxis.setLabel("Votes");
+		yAxis.setMin(0);
+		yAxis.setMax(200);
+	}
+
+	private BarChartModel initBarModel(List<Result> list) {
+		BarChartModel model = new BarChartModel();
+		
+		ChartSeries men = new ChartSeries();
+		men.setLabel("Man");
+		ChartSeries woman = new ChartSeries();
+		woman.setLabel("Woman");
+
+		
+		men.set("2004", 120);
+		men.set("2005", 100);
+		men.set("2006", 44);
+		men.set("2007", 150);
+		men.set("2008", 25);
+
+		
+		woman.set("2004", 52);
+		woman.set("2005", 60);
+		woman.set("2006", 110);
+		woman.set("2007", 135);
+		woman.set("2008", 120);
+
+		model.addSeries(men);
+		model.addSeries(woman);
+
+		return model;
+	}
+
+	public BarChartModel getBarModel() {
+		return barModel;
 	}
 
 }
