@@ -1,6 +1,5 @@
 package com.voting;
 
-
 import com.controller.CandidateController;
 
 public class Vote {
@@ -11,8 +10,6 @@ public class Vote {
 	private String sex;
 	private String city;
 	private String education;
-
-	
 
 	public Vote() {
 
@@ -73,8 +70,5 @@ public class Vote {
 	public void setEducation(String education) {
 		this.education = education;
 	}
-
-
-
 
 }

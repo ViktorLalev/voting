@@ -23,6 +23,7 @@ public class VoteQuery extends DBConnection implements Serializable {
 				vote.setId(rs.getInt("id"));
 				vote.setCandidate_id(rs.getInt("candidate_id"));
 				vote.setAge(rs.getInt("age"));
+				vote.setSex(rs.getString("sex"));
 				vote.setCity(rs.getString("city"));
 				vote.setEducation(rs.getString("education"));
 				list.add(vote);
