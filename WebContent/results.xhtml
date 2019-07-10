@@ -7,6 +7,22 @@
 	<title>Voting System</title>
 </h:head>
 <h:body>
+	<div>
+		<p:link outcome="/index.xhtml" value="Vote Again">
+
+		</p:link>
+		<br />
+
+
+		<p:link outcome="/stats.xhtml" value="Stats">
+
+		</p:link>
+	</div>
+	<div>
+		<p:chart type="pie" model="#{results.pieModel}"
+			style=" margin:0 auto;width:500px;height:400px" />
+
+	</div>
 	<h:form>
 		<p:dataTable var="result" value="#{results.list}">
 
@@ -21,10 +37,5 @@
 
 		</p:dataTable>
 	</h:form>
-	<div>
-		<p:chart type="pie" model="#{results.pieModel}"
-			style="width:400px;height:300px" />
-
-	</div>
 </h:body>
 </html>

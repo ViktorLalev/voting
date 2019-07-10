@@ -35,7 +35,9 @@ public class ResultController implements Serializable {
 	@PostConstruct
 	public void init() {
 
-		createPieModel();
+		list = getList();
+
+		createPieModel(list);
 
 	}
 
@@ -60,15 +62,13 @@ public class ResultController implements Serializable {
 		return pieModel;
 	}
 
-	private void createPieModel() {
+	private void createPieModel(List<Result> list) {
+
 		pieModel = new PieChartModel();
 
-		pieModel.set("Brand 1", 540);
-		pieModel.set("Brand 2", 325);
-		pieModel.set("Brand 3", 702);
-		pieModel.set("Brand 4", 421);
+		list.forEach((l) -> pieModel.set(l.getCandidate(), l.getVotes()));
 
-		pieModel.setTitle("Simple Pie");
+		pieModel.setTitle("Vote Current Results");
 		pieModel.setLegendPosition("w");
 		pieModel.setShadow(false);
 	}
