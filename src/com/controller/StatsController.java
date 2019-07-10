@@ -143,7 +143,7 @@ public class StatsController implements Serializable {
 		sexModel.setTitle("By Gender");
 		sexModel.setLegendPosition("ne");
 
-//		list.forEach((l) -> pieModel.set(l.getCandidate(), l.getVotes()));
+//		
 		Axis xAxis = sexModel.getAxis(AxisType.X);
 		xAxis.setLabel("Gender");
 
